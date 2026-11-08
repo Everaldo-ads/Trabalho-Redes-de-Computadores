@@ -79,6 +79,28 @@ docker compose down
 
 `docker compose down` mantém os volumes e os dados. Para apagar também os dados persistidos do MySQL e do WordPress, use `docker compose down -v`; essa remoção é irreversível.
 
+## Acessar o MySQL pelo MySQL Workbench
+
+O MySQL Workbench é um cliente gráfico para conectar ao banco; não é necessário instalar outro servidor MySQL no Windows.
+
+1. Baixe o **MySQL Workbench** para Windows na [página oficial de downloads](https://dev.mysql.com/downloads/workbench/). Se a página oferecer a opção de entrar ou criar uma conta Oracle, você pode selecionar **“No thanks, just start my download”**.
+2. Instale e abra o MySQL Workbench.
+3. Na tela inicial, clique no botão **+** ao lado de **MySQL Connections** para criar uma conexão.
+4. Preencha os campos:
+
+   | Campo | Docker Compose no Windows | Vagrant/VM |
+   |---|---|---|
+   | Connection Name | `MySQL do projeto` | `MySQL do projeto (VM)` |
+   | Hostname | `127.0.0.1` | `192.168.20.10` |
+   | Port | `3310` | `3310` |
+   | Username | `root` | `root` |
+
+5. Clique em **Store in Vault...** (ou **Store in Keychain...**) e informe a senha `rootpassword`.
+6. Clique em **Test Connection** e, se o teste funcionar, confirme em **OK**. Depois, abra a conexão criada na tela inicial.
+7. Na aba **Schemas**, atualize a lista se necessário. O banco do WordPress é `wordpress`.
+
+Antes de conectar, inicie o ambiente escolhido: no Docker Compose, execute `docker compose up -d`; para a VM, execute `vagrant up --provider=virtualbox`. Na opção Vagrant, o endereço `192.168.20.10` só estará disponível enquanto a VM estiver ligada.
+
 ## Portas
 
 | Serviço | Porta publicada | Porta no contêiner |
