@@ -8,12 +8,10 @@ Vagrant.configure("2") do |config|
     virtualbox.memory = 2048
     virtualbox.cpus = 2
   end
-
   config.vm.provision "shell", inline: <<-SHELL
     set -eux
     export DEBIAN_FRONTEND=noninteractive
 
-    # Add Docker's official GPG key:
     apt update
     apt install -y ca-certificates curl
 
@@ -24,15 +22,14 @@ Vagrant.configure("2") do |config|
 
     chmod a+r /etc/apt/keyrings/docker.asc
 
-    # Add the repository to Apt sources:
-    tee /etc/apt/sources.list.d/docker.sources <<-EOF
-    Types: deb
-    URIs: https://download.docker.com/linux/ubuntu
-    Suites: $(. /etc/os-release && echo "\${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-    Components: stable
-    Architectures: $(dpkg --print-architecture)
-    Signed-By: /etc/apt/keyrings/docker.asc
-    EOF
+    cat > /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: jammy
+Components: stable
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 
     apt update
 
@@ -44,7 +41,7 @@ Vagrant.configure("2") do |config|
       docker-compose-plugin
 
     systemctl enable --now docker
-    usermod -aG docker vagrant
 
+    usermod -aG docker vagrant
   SHELL
 end
