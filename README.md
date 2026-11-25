@@ -62,16 +62,8 @@ Os endereços abaixo estarão disponíveis depois que os contêineres iniciarem:
 
 Abra no navegador do Windows:
 
-- Aplicação: `http://192.168.20.10:8010`
-- WordPress: `http://192.168.20.10:9010`
-
-Para usar os domínios do projeto, execute o Bloco de Notas como administrador, abra `C:\Windows\System32\drivers\etc\hosts` e acrescente:
-
-```text
-192.168.20.10 eventos.local blog.eventos.local
-```
-
-Então acesse `http://eventos.local:8010` e `http://blog.eventos.local:9010`.
+- Aplicação: `http://eventos.local:8010`
+- WordPress: `http://blog.eventos.local:9010`
 
 Comandos úteis, executados na pasta do repositório:
 
