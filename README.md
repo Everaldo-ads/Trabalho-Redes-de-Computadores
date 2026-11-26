@@ -60,6 +60,11 @@ docker compose up -d --build
 
 Os endereços abaixo estarão disponíveis depois que os contêineres iniciarem:
 
+Se no navegador não funcionar o DNS rodem este comando no PowerShell como Administrador:
+
+Add-DnsClientNrptRule -Namespace "eventos.local",".eventos.local" -NameServers "192.168.20.10"
+Clear-DnsClientCache
+
 Abra no navegador do Windows:
 
 - Aplicação: `http://eventos.local:8010`
